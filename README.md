@@ -10,13 +10,13 @@ If you pass an id path like "1:1:1:1:1:png" to the getpath("1:1:1:1:1:png") meth
 
 ### How files are managed in imagedb?
 
-The /_Trillion_/ directory contains 1000 /_Billion_/ folders.
-The /_Billion_/ directory contains 1000 /_Million_/ folders.
-The /_Million_/ directory contains 1000 /_Thousand_/ folders.
-The /_Thousand_/ directory contains 1000 images.
+The /T/ directory contains 1000 /B/ folders.
+The /B/ directory contains 1000 /M/ folders.
+The /M/ directory contains 1000 /Th/ folders.
+The /Th/ directory contains 1000 images.
 
 ### How to read the image id path?
 
-"1:2:3:4:5:png" == _Trillion_1/_Billion_2/_Million_3/_Thousand_4/5.png
+"1:2:3:4:5:png" == _T_1/_B_2/_M_3/_Th_4/5.png
 
 Note: the folders and images names are hashed, the first 20 character of the SHA-256.
