@@ -8,14 +8,14 @@ Passing an image path to the push("C:/user/users/xxx.png") method will return an
 
 If you pass an id path like "1:1:1:1:1:png" to the getpath("1:1:1:1:1:png") method you will receive the full path of the image that Imagedb store for you.
 
-###How files are managed in imagedb?
+### How files are managed in imagedb?
 
 The _Trillion_ folder contains 1000 _Billion_ folder.
 The _Billion_ folder contains 1000 _Million_ folder.
 The _Million_ folder contains 1000 _Thousand_ folder.
 The _Thousand_ folder contains 1000 imges.
 
-###How to read the image id path?
+### How to read the image id path?
 
 "1:2:3:4:5:png" == _Trillion_1/_Billion_2/_Million_3/_Thousand_ 4/5.png
 
