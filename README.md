@@ -19,4 +19,4 @@ If you pass an id path like "1:1:1:1:1:png" to the getpath("1:1:1:1:1:png") meth
 
 > "1:2:3:4:5:png" == _T_1/_B_2/_M_3/_Th_4/5.png
 
->> Note: the folders and images names are hashed, the first 20 character of the SHA-256.
+>> Note: the folders and images names are hashed, the first 20 characters of the SHA-256.
