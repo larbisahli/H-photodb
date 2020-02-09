@@ -5,6 +5,8 @@
 
 import os
 import hashlib
+import time
+
 import pickledb
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
@@ -75,8 +77,11 @@ class Imagedb(_LocAuth):
     def _slice(_id):
         ''' Slice the string and get the image path hint and the file extension '''
         _list = [i for i in _id.split(':')]
-        x = [int(v) for i, v in enumerate(_list) if i != (len(_list) - 1)]
-        x.append(_list[len(_list) - 1])
+        x = [int(v) for i, v in enumerate(_list) if i != 5 and i != 6]
+        x.append(_list[5])
+        if len(_list[6]) != 0:
+            x.append(_list[6])
+
         return x
 
     @staticmethod
@@ -85,14 +90,19 @@ class Imagedb(_LocAuth):
         db.set("last_entry", path_id)
         return path_id
 
-    def getpath(self, path_id):
+    def getpath(self, path_id, name=None):
         ''' Return image location.
-        Converting the image path_id (string ex: 1:1:1:1:2:png)
+        Converting the image path_id (string ex: _1:1:1:1:2:png)
         into a valid image path the image location. '''
-        t, b, m, k, c, f = self._slice(path_id)
+
+        if len(slice_ := self._slice(path_id)) == 7:
+            t, b, m, k, c, f, name = slice_
+        else:
+            t, b, m, k, c, f = slice_
+
         img_path = os.path.join(f"{self.path}", _hash_(f"_Trillion_{t}"), _hash_(f"_Billion_{b}"),
                                 _hash_(f"_Million_{m}"), _hash_(f"_Thousand_{k}"),
-                                f"{_hash_(str(c))}.{f}")
+                                f"{name if name else '' }_{_hash_(str(c))}.{f}")
         return img_path
 
     def delete(self, path_id):
@@ -106,10 +116,10 @@ class Imagedb(_LocAuth):
         else:
             return False
 
-    def push(self, img_path):
+    def push(self, path, name=None):
         ''' Rename and push an image to a new directory and return the image path_id (string ex: 1:1:1:1:2:png)
             that you can store in a database as a reference to an image file path. '''
-        _, f = os.path.splitext(img_path)
+        _, f = os.path.splitext(path)
         f = f.split(".")[1]
         del_state = False
         if len(del_id := self.db.get("deleted_id")) != 0:
@@ -139,8 +149,9 @@ class Imagedb(_LocAuth):
 
         self.db.set("total_images", str(int(self.db.get("total_images")) + 1))
         self._directoriesManager(t=t, b=b, m=m, k=k)
-        os.rename(img_path, self.getpath(path_id))
-        return path_id
+        os.rename(path, self.getpath(path_id, name=name))
+
+        return f"{path_id}:{name if name else '' }"
 
     def __len__(self):
         ''' Return the number on images in the directory '''
@@ -149,3 +160,12 @@ class Imagedb(_LocAuth):
     def unauth(self):
         ''' Return the number of unauthorised access'''
         return int(self.db.get("unauth_access"))
+
+
+
+img = Imagedb()
+T1 = time.perf_counter()
+print(img.getpath("0:0:0:0:17:jpg:coas"))
+
+T2 = time.perf_counter()
+print('Took: {} Seconds'.format(T2-T1))
