@@ -8,6 +8,10 @@ Passing an image path to the push method push(path="C:/user/users/xxx.png", name
 
 If you pass an id path like "1:1:1:1:1:png:user" to the getpath method getpath("1:1:1:1:1:png:user") you will receive the full path of the image that Imagedb store for you.
 
+full path look like : 
+
+"C:\Users\User\Desktop\Imagedb\377837be7d08e9cc9f50\ce0f59c031b4df6de62c\b5d24a118aea2a99df8c\8c301d6ef3bac6b1b216\user_4523540f1504cd17100c.png"
+
 ### How files are managed in imagedb?
 
 - The (T) directory contains 1000 (B) folders.
