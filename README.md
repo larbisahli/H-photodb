@@ -6,7 +6,7 @@ To store, retrieve and delete images you need to set up your auth key so you can
 
 Passing an image path to the push method push(path="C:/user/users/xxx.png", name="user") will return an id path with the name you chose as a string like "1:1:1:1:1:png:user" that you can store in your database as a reference to that image path.
 
-If you pass an id path like "1:1:1:1:1:png:user" to the getpath("1:1:1:1:1:png:user") method you will receive the full path of the image that Imagedb store for you.
+If you pass an id path like "1:1:1:1:1:png:user" to the getpath method getpath("1:1:1:1:1:png:user") you will receive the full path of the image that Imagedb store for you.
 
 ### How files are managed in imagedb?
 
@@ -14,6 +14,7 @@ If you pass an id path like "1:1:1:1:1:png:user" to the getpath("1:1:1:1:1:png:u
 - The (B) directory contains 1000 (M) folders.
 - The (M) directory contains 1000 (Th) folders.
 - The (Th) directory contains 1000 images.
+that are created on need.
 
 ### How to read the image id path?
 
