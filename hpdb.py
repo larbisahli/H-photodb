@@ -160,12 +160,3 @@ class Imagedb(_LocAuth):
     def unauth(self):
         ''' Return the number of unauthorised access'''
         return int(self.db.get("unauth_access"))
-
-
-
-img = Imagedb()
-T1 = time.perf_counter()
-print(img.getpath("0:0:0:0:17:jpg:coas"))
-
-T2 = time.perf_counter()
-print('Took: {} Seconds'.format(T2-T1))
